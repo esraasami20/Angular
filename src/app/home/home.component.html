@@ -1,0 +1,34 @@
+<div *ngFor="let item of blogs" class="container text-center">
+    <a routerLink="/blogs">{{item.author}}</a><br/>
+    <img [src]="'http://localhost:3000'+ item.photo" style="height: 500px; width: 500px; "><br/>   
+    <a routerLink="/blogs">{{item.body}}</a><br/>
+    <a routerLink="/blogs">{{item.tags}}</a><br/>
+    <a routerLink="/blogs">{{item.updatedAt}}</a><br/>
+    <a routerLink="/blogs">{{item.createdAt}}</a><br/>    
+    <hr/>   
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<router-outlet></router-outlet>

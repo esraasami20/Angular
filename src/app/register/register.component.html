@@ -1,0 +1,29 @@
+<div class="container text-center">
+    <form #user=ngForm (ngSubmit)="onSubmit(user.value)" novalidate>
+        <!-- *ngIf="!submitted" -->
+        <div class="form-group">
+            <!-- {{user.value|json}}<br /> -->
+            <label for="Fname">Frist Name : </label>
+            <input type="text" required name="Fname" id="Fname" ngModel class="form-control" #Fname="ngModel"
+                [class.is-invalid]="Fname.invalid && Fname.touched" placeholder="input your frist name">
+            <label for="Lname">Last Name : </label>
+            <input type="text" required name="Lname" id="Lname" ngModel class="form-control" #Lname="ngModel"
+                [class.is-invalid]="Lname.invalid && Lname.touched" placeholder="input your last name">
+            <label for="username">User Name : </label>
+            <input type="text" required name="username" id="username" ngModel
+                [class.is-invalid]="username.invalid && username.touched" class="form-control" #username="ngModel"
+                placeholder="input your user name">
+            <label for="password">Password : </label>
+            <input type="password" required name="password" id="password" ngModel class="form-control"
+                #password="ngModel" [class.is-invalid]="password.invalid && password.touched"
+                placeholder="input your password">
+            <label for="email">Email : </label>
+            <input type="text" required name="email" id="email" ngModel class="form-control" #email="ngModel"
+                [class.is-invalid]="email.invalid && email.touched" placeholder="input your E-mail">
+            <label for="dob">Date of Brith : </label>
+            <input type="date" required name="dob" id="dob" ngModel class="form-control" #dob="ngModel"
+                [class.is-invalid]="dob.invalid && dob.touched" placeholder="input your date of birth">
+        </div>
+        <button type="submit" [disabled]="user.form.invalid"  id="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

@@ -1,0 +1,19 @@
+<div class="container text-center">
+    <h4 *ngIf="error">{{error}}</h4>   
+    <form #user=ngForm (ngSubmit)="onSubmit(user.value)" novalidate>
+        <div class="form-group">
+            <label for="username">User Name : </label>
+            <input type="text" required name="username" id="username" ngModel
+                [class.is-invalid]="username.invalid && username.touched" class="form-control" #username="ngModel"
+                placeholder="input your user name">
+            <small class="text-danger" [class.d-none]="username.valid || username.untouched">required</small><br />
+            <label for="password">Password : </label>
+            <input type="password" required name="password" id="password" ngModel class="form-control"
+                #password="ngModel" [class.is-invalid]="password.invalid && password.touched"
+                placeholder="input your password">
+            <small class="text-danger" [class.d-none]="password.valid || password.untouched">required</small><br />
+        </div>
+        <button type="submit" [disabled]="user.form.invalid" id="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
