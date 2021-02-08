@@ -5,6 +5,7 @@ export class Register {
         public Lname: string,
         public password: string,
         public email: string,
-        public dob: string
+        public photo?: string,
+        public dob?: string
     ) { }
 }

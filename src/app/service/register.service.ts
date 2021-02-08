@@ -8,8 +8,17 @@ import { Register } from '../module/register';
 export class RegisterService {
 
   regist(regist: Register) {
-    return this.http.post<Register>("http://localhost:3000/users", regist)  
-      
+    return this.http.post<Register>("http://localhost:3000/User", regist)
   }
-  constructor(public http:HttpClient) { }
+  getUserData() {
+    return this.http.get<Register>("http://localhost:3000/User/mypage")
+
+  }
+  editUserData(user) {
+    return this.http.patch<Register>("http://localhost:3000/User/edit", user)
+  }
+  deleteUserData() {
+    return this.http.delete<Register>("http://localhost:3000/User/del")
+  }
+  constructor(public http: HttpClient) { }
 }

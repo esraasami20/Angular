@@ -4,25 +4,37 @@ import { BlogComponent } from './blog/blog.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import {AuthGuard} from './guard/auth.guard';
+import { AuthGuard } from './guard/auth.guard';
+import { ProfileComponent } from './profile/profile.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {
-    path:'blog',
-    component:BlogComponent,
-    canActivate:[AuthGuard]
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path:'login',
-    component:LoginComponent
+    path: 'login',
+    component: LoginComponent
   },
   {
-    path:'register',
-    component:RegisterComponent
+    path: 'register',
+    component: RegisterComponent
   },
   {
-    path:'home',
-    component:HomeComponent
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'profile/setting',
+    component: SettingsComponent,
+    
+  },  
+  {
+    path: '**',
+    component: BlogComponent
   }
 ];
 

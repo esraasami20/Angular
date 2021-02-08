@@ -1,0 +1,26 @@
+ul, li{
+    display: inline-block;
+    margin-left: 30px;
+    }
+
+ div,p{
+        text-align: center;
+        width: 80%;
+    }
+   /* .img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 2px solid black;
+   }  */
+   .main{
+       display: -webkit-inline-block;
+   }
+   .commentinput{
+    margin: 15px;
+    width:95%;
+    height: 35px;
+    border: 0px;
+    background-color: rgb(226, 226, 226);
+    border-radius: 20px 20px;
+}

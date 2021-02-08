@@ -14,22 +14,9 @@ import { AuthService } from '../service/auth.service';
 export class LoginComponent implements OnInit {
   errorMessage: any;
   public error: string;
-  constructor(public logservse: LoginService, public routs: Router, public auth: AuthService) { }
+  constructor(public routs: Router, public auth: AuthService) { }
   onSubmit(log) {
-    console.log(log);
-
-    // this.logservse.login(log).subscribe(
-    //   a => {
-    //     console.log(a);
-    //     this.routs.navigate([
-    //       '/home'
-    //     ])
-    //   },
-    //   error => {
-    //     this.errorMessage = error.message;
-    //     console.error('There was an error!', error);
-    //   }
-    // )
+    console.log(log);    
     this.auth.login(log.username, log.password)
       .pipe(first())
       .subscribe(

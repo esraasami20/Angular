@@ -1,5 +1,5 @@
 <div class="container text-center">
-    <h4 *ngIf="error">{{error}}</h4>   
+    <h4 *ngIf="error">{{error}}</h4>
     <form #user=ngForm (ngSubmit)="onSubmit(user.value)" novalidate>
         <div class="form-group">
             <label for="username">User Name : </label>
@@ -15,5 +15,4 @@
         </div>
         <button type="submit" [disabled]="user.form.invalid" id="submit" class="btn btn-primary">Submit</button>
     </form>
-
 </div>

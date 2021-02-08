@@ -1,6 +1,6 @@
 export class Blog {
     constructor(
-        public author?:string,
+        public auther?:string,
         public title?: string,
         public body?:string,
         public tags?: [string],

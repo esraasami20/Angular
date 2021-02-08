@@ -7,7 +7,11 @@ import { Blog } from '../module/blog';
 })
 export class BlogService {
   getAll(){
-    return this.http.get<Blog[]>("http://localhost:3000/blogs/")    
+    return this.http.get<Blog[]>("http://localhost:3000/Blog/new")    
   }
+  getMyBlog(){
+    return this.http.get<Blog[]>("http://localhost:3000/Blog/myblogs")    
+  }
+  // 
   constructor(public http:HttpClient) { }
 }

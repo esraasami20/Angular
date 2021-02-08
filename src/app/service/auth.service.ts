@@ -7,17 +7,21 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
+  
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string): Observable<boolean> {
-    return this.http.post<{Auth: string}>('http://localhost:3000/users/login', {username: username, password: password})
+    return this.http.post<{ token: string }>('http://localhost:3000/User/login', { username: username, password: password })
       .pipe(
         map(result => {
-          console.log(result.Auth)
-          localStorage.setItem('access_token', result.Auth);
+          console.log(result.token)
+          localStorage.setItem('access_token', result.token);
           return true;
         })
       );
+  }
+  getToken() {
+    return localStorage.getItem('access_token');
   }
   logout() {
     localStorage.removeItem('access_token');
@@ -25,4 +29,5 @@ export class AuthService {
   public get loggedIn(): boolean {
     return (localStorage.getItem('access_token') !== null);
   }
+  
 }

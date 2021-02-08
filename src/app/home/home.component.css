@@ -8,3 +8,12 @@ ul, li{
         width: 600px;
     }
     
+    .commentinput{
+        margin: 15px;
+        width:95%;
+        height: 35px;
+        border: 0px;
+        background-color: rgb(226, 226, 226);
+        border-radius: 20px 20px;
+    }
+    

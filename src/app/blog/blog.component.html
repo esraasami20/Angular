@@ -1,1 +1,45 @@
-blogssssssssssssssssssssssssssss
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <a class="navbar-brand">Blogs</a>
+  <form class="form-inline">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button" routerLink="/login">Login</button>
+    &nbsp;&nbsp;&nbsp;
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button" routerLink="/register">Sign Up</button>
+    &nbsp;&nbsp;&nbsp;
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+<div *ngFor="let item of blogs" class="container text-center">
+  <a routerLink="/blog">{{item.title}}</a><br />
+  <img [src]="'http://localhost:3000/'+ item.photo" style="height: 500px; width: 500px; "><br />
+  <a routerLink="/blog">{{item.body}}</a><br />
+  <a routerLink="/blog">{{item.tags}}</a><br />
+  <a routerLink="/blog">{{item.updatedAt}}</a><br />
+  <a routerLink="/blog">{{item.createdAt}}</a><br />
+  <hr/>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<router-outlet></router-outlet>

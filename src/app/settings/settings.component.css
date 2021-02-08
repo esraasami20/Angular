@@ -1,0 +1,14 @@
+div{
+    text-align: center;
+}
+.container{
+    margin-top: 100px;
+    border: 2px solid green;
+    border-radius: 10px;
+    width: 60%;
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+/* #form{
+display: none;
+} */

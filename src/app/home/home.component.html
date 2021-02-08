@@ -1,34 +1,36 @@
+<app-header></app-header>
+
 <div *ngFor="let item of blogs" class="container text-center">
-    <a routerLink="/blogs">{{item.author}}</a><br/>
-    <img [src]="'http://localhost:3000'+ item.photo" style="height: 500px; width: 500px; "><br/>   
-    <a routerLink="/blogs">{{item.body}}</a><br/>
-    <a routerLink="/blogs">{{item.tags}}</a><br/>
-    <a routerLink="/blogs">{{item.updatedAt}}</a><br/>
-    <a routerLink="/blogs">{{item.createdAt}}</a><br/>    
-    <hr/>   
-</div>
+    <a routerLink="/blog">{{item.title}}</a><br />
+    <img [src]="'http://localhost:3000/'+ item.photo" style="height: 500px; width: 500px; "><br />
+    <a routerLink="/blog">{{item.body}}</a><br />
+    <a routerLink="/blog">{{item.tags}}</a><br />
+    <a routerLink="/blog">{{item.updatedAt}}</a><br />
+    <a routerLink="/blog">{{item.createdAt}}</a><br />
 
+    <ngb-accordion #acc="ngbAccordion" class="col-md-12 text-right" style="margin-right: 15px;">
 
+        <ngb-panel title="3 Comments">
+            <span>3</span> Comments
+            <ng-template ngbPanelContent>
+                <div class="card text-left"
+                    style="background-color:  rgb(226, 226, 226); width: fit-content; border-radius: 30px 30px; padding: 10px;">
+                    <div class="ml-3 mt-2 form-inline" style="margin: 15px;">
+                        <div class="mt-2 ml-1">
+                            <h5 class="card-title profile">bhjvhv b</h5>
+                            <h6 class="card-subtitle mb-2 mt-1 text-muted">Shared publicly - 23456</h6>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text" style="margin: 15px;">hvghvhgvhgvhg</p>
+                        <hr />
+                    </div>
 
+                </div>
+                <div class="col-md-12"><input type="text" width="100%" class="commentinput"
+                        placeholder="Write a comment....."></div>
+            </ng-template>
 
+        </ngb-panel>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<router-outlet></router-outlet>
+    </ngb-accordion>

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Blog } from '../module/blog';
+import { AuthService } from '../service/auth.service';
 import { BlogService } from '../service/blog.service';
 
 @Component({
@@ -11,8 +12,11 @@ import { BlogService } from '../service/blog.service';
 export class HomeComponent implements OnInit {
 
   blogs:Blog[];
+  logout(){
+    this.auth.logout()
+  }
     
-  constructor(public serviceblog:BlogService) { }
+  constructor(public serviceblog:BlogService,public auth:AuthService) { }
     
   ngOnInit(): void {
     this.serviceblog.getAll().subscribe(

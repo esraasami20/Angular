@@ -9,15 +9,15 @@ import { BlogService } from '../service/blog.service';
 })
 export class BlogComponent implements OnInit {
   blogs:Blog[];
-  constructor(public blogService:BlogService) { }
-
+    
+  constructor(public serviceblog:BlogService) { }
+    
   ngOnInit(): void {
-    // console.log("done");
-    // this.blogService.getAll().subscribe(
-    //   a=>{
-    //     this.blogs=a;
-    //   }
-    // )
+    this.serviceblog.getAll().subscribe(
+      a=>{
+        this.blogs=a;
+      }
+    )
   }
 
 }

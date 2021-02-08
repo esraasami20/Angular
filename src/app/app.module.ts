@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,13 +9,17 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BlogComponent } from './blog/blog.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './guard/auth.guard';
 import { AuthService } from './service/auth.service';
 import { LoginService } from './service/login.service';
 import { RegisterService } from './service/register.service';
+import { TokenInterceptorService } from './service/token-interceptor.service';
+import { ProfileComponent } from './profile/profile.component';
+import { SettingsComponent } from './settings/settings.component';
+
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -28,13 +33,16 @@ export function tokenGetter() {
     RegisterComponent,
     HomeComponent,
     HeaderComponent,
-    BlogComponent
+    BlogComponent,
+    ProfileComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgbModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -48,8 +56,12 @@ export function tokenGetter() {
     AuthService,
     AuthGuard,
     LoginService,
-    RegisterService
-  ],
+    RegisterService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass:TokenInterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
