@@ -48,6 +48,21 @@ export class HomeComponent implements OnInit {
       }
     )
   } 
+  addComment(id,comment) {
+    let refaat={
+      id:id,
+      Comment:{
+        body:comment
+      }
+    }
+    this.serviceblog.addComment(refaat).subscribe(
+      a => {
+        console.log(a);
+        
+      }
+    )
+    location.reload();
+  }
   constructor(public serviceblog:BlogService,public auth:AuthService, public userService: RegisterService, public router: Router) { }
     
   ngOnInit(): void {

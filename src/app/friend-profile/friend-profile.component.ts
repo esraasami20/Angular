@@ -38,6 +38,21 @@ export class FriendProfileComponent implements OnInit {
   
     }
   }
+  addComment(id,comment) {
+    let refaat={
+      id:id,
+      Comment:{
+        body:comment
+      }
+    }
+    this.blogService.addComment(refaat).subscribe(
+      a => {
+        console.log(a);
+        
+      }
+    )
+    location.reload();
+  }
   ngOnInit() {
     let username: string = "";
 

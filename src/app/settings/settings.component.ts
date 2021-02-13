@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Blog } from '../module/blog';
 import { Register } from '../module/register';
 import { AuthService } from '../service/auth.service';
 import { BlogService } from '../service/blog.service';
@@ -11,13 +12,14 @@ import { RegisterService } from '../service/register.service';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
-
+  newBlog: Blog = new Blog("", "", [], "");
   user: Register = new Register("", "", "", "", "");
   constructor(public auth: AuthService, public register: RegisterService, public routes: Router,public serviceBlog:BlogService) { }
   logout() {
     this.auth.logout()
   }
-
+  onselect(){}
+  post(){}
   edit() {
     console.log(this.user)
     this.register.editUserData(this.user).subscribe(      

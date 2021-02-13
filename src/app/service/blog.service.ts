@@ -27,10 +27,13 @@ export class BlogService {
   getFollowingBlog() {
     return this.http.get<Blog[]>("http://localhost:3000/Blog/home")
   }
-  searchBlog(searched){
-    return this.http.get<Blog[]>("http://localhost:3000/Blog/search/"+searched)
+  searchBlog(searched) {
+    return this.http.get<Blog[]>("http://localhost:3000/Blog/search/" + searched)
   }
-  deleteAll(){
+  addComment(comment) {
+    return this.http.patch<Blog>("http://localhost:3000/Blog/addComment" ,comment)
+  }
+  deleteAll() {
     return this.http.delete<Blog>("http://localhost:3000/Blog/delete")
   }
 

@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
     })
   }
   selectedimg: File;
-  euser=new FormData();
+  euser = new FormData();
   onselectedphoto(event) {
     this.selectedimg = <File>event.target.files[0];
     this.euser.append('photo', this.selectedimg, this.selectedimg.name)
@@ -52,9 +52,24 @@ export class ProfileComponent implements OnInit {
       b => {
         console.log(b)
       }
-    )    
+    )
   }
-  //واقفين هنا بنعمل الصورة 
+  addComment(id,comment) {
+    let refaat={
+      id:id,
+      Comment:{
+        body:comment
+      }
+    }
+    this.serviceblog.addComment(refaat).subscribe(
+      a => {
+        console.log(a);
+        
+      }
+    )
+    location.reload();
+  }
+
   onselect(event) {
     this.selectedFile = <File>event.target.files[0];
     this.Blog.append('photo', this.selectedFile, this.selectedFile.name)
@@ -96,7 +111,7 @@ export class ProfileComponent implements OnInit {
         console.log("deleted")
       }
     )
-    
+
   }
   ngOnInit(): void {
     this.serviceblog.getMyBlog().subscribe(
