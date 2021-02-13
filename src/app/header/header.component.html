@@ -1,11 +1,14 @@
 <nav class="navbar navbar-light bg-light justify-content-between">
-  <a class="navbar-brand">Blogs</a>
-  <a class="navbar-brand" routerLink="/home">Home</a> 
-  <a class="navbar-brand" routerLink="/profile">My Profile</a>    
+  <a routerLink="/home" class="navbar-brand">Blogs</a>
+  <a class="navbar-brand" routerLink="/home">Home</a>
+  <a class="navbar-brand" routerLink="/profile">My Profile</a>
   <a class="btn" routerLink="/profile/setting">Settings</a>
   <a class="btn" (click)="logout()" routerLink="/">Log Out</a>
-  <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  <form class="form-inline" action="/search">
+    <input class="form-control mr-sm-2" name="searchbar" #searched type="search" placeholder="Search"
+      aria-label="Search">
+    <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="">Search</button> -->
+    <a type="button" class="btn btn-outline-success my-2 my-sm-0" [href]="['/search/'+searched.value]"
+      value="search" (click)="search()">Search</a>
   </form>
 </nav>

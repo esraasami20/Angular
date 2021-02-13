@@ -15,7 +15,7 @@ export class BlogComponent implements OnInit {
   ngOnInit(): void {
     this.serviceblog.getAll().subscribe(
       a=>{
-        this.blogs=a;
+        this.blogs=a.reverse();
       }
     )
   }

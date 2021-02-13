@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Register } from '../module/register';
 import { AuthService } from '../service/auth.service';
+import { BlogService } from '../service/blog.service';
 import { RegisterService } from '../service/register.service';
 
 @Component({
@@ -12,14 +13,16 @@ import { RegisterService } from '../service/register.service';
 export class SettingsComponent implements OnInit {
 
   user: Register = new Register("", "", "", "", "");
-  constructor(public auth: AuthService, public register: RegisterService, public routes: Router) { }
+  constructor(public auth: AuthService, public register: RegisterService, public routes: Router,public serviceBlog:BlogService) { }
   logout() {
     this.auth.logout()
   }
 
   edit() {
-    this.register.editUserData(this.user).subscribe(
+    console.log(this.user)
+    this.register.editUserData(this.user).subscribe(      
       b => {
+        
         alert("^_^ Edited ^_^");
         this.routes.navigate(['/profile']);
         console.log(b);
@@ -35,10 +38,16 @@ export class SettingsComponent implements OnInit {
   }
   deletee() {
     if (confirm("Are you sure !!")) {
+      this.serviceBlog.deleteAll().subscribe(
+        b=>{
+          console.log(b)
+        }
+      )
       this.register.deleteUserData().subscribe(
       a=>
       this.routes.navigate(['/'])
       )
+      
       localStorage.removeItem('access_token')
 
     }

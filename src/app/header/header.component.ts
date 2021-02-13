@@ -7,7 +7,7 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  search(){}
   logout() {
     this.auth.logout()
   }

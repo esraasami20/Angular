@@ -6,6 +6,8 @@ export class Register {
         public password: string,
         public email: string,
         public photo?: string,
-        public dob?: string
+        public dob?: string,
+        public following?:Array<string>,
+        public followers?:Array<string>
     ) { }
 }

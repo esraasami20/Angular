@@ -6,12 +6,34 @@ import { Blog } from '../module/blog';
   providedIn: 'root'
 })
 export class BlogService {
-  getAll(){
-    return this.http.get<Blog[]>("http://localhost:3000/Blog/new")    
+  getAll() {
+    return this.http.get<Blog[]>("http://localhost:3000/Blog/new")
   }
-  getMyBlog(){
-    return this.http.get<Blog[]>("http://localhost:3000/Blog/myblogs")    
+  getMyBlog() {
+    return this.http.get<Blog[]>("http://localhost:3000/Blog/myblogs")
   }
-  // 
-  constructor(public http:HttpClient) { }
+  setMyBlog(blog: any) {
+    return this.http.post<Blog>("http://localhost:3000/Blog/", blog)
+  }
+  editMyBlog(id, blog: Blog) {
+    return this.http.patch<Blog>("http://localhost:3000/Blog/" + id, blog)
+  }
+  delMyBlog(id) {
+    return this.http.delete<Blog>("http://localhost:3000/Blog/" + id)
+  }
+  getFBlog(username) {
+    return this.http.get<Blog[]>("http://localhost:3000/Blog/auther/" + username)
+  }
+  getFollowingBlog() {
+    return this.http.get<Blog[]>("http://localhost:3000/Blog/home")
+  }
+  searchBlog(searched){
+    return this.http.get<Blog[]>("http://localhost:3000/Blog/search/"+searched)
+  }
+  deleteAll(){
+    return this.http.delete<Blog>("http://localhost:3000/Blog/delete")
+  }
+
+
+  constructor(public http: HttpClient) { }
 }

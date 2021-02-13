@@ -26,7 +26,8 @@
             <!-- <label for="photo">Upload ur Photo : </label>
             <input type="file" required name="photo" id="photo" ngModel class="form-control" #photo="ngModel"
                 [class.is-invalid]="photo.invalid && photo.touched" placeholder="Upload ur Photo" (input)="fun($event)"> -->
-        </div>
+                <span>If you have an account please <a routerLink="/login">login</a></span>
+            </div>
         <button type="submit" [disabled]="user.form.invalid" id="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

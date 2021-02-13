@@ -3,10 +3,10 @@ ul, li{
     margin-left: 30px;
     }
 
- div,p{
+ /* div,p{
         text-align: center;
         width: 600px;
-    }
+    } */
     
     .commentinput{
         margin: 15px;

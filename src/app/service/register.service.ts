@@ -12,7 +12,6 @@ export class RegisterService {
   }
   getUserData() {
     return this.http.get<Register>("http://localhost:3000/User/mypage")
-
   }
   editUserData(user) {
     return this.http.patch<Register>("http://localhost:3000/User/edit", user)
@@ -20,5 +19,18 @@ export class RegisterService {
   deleteUserData() {
     return this.http.delete<Register>("http://localhost:3000/User/del")
   }
+  getUser(username) {
+    return this.http.get<Register>("http://localhost:3000/User/" + username)
+  }
+  followUser(username) {
+    return this.http.get<Register>("http://localhost:3000/User/follow/" + username)
+  }
+  unfollowUser(username) {
+    return this.http.get<Register>("http://localhost:3000/User/unfollow/" + username)
+  }
+  searchUser(searched) {
+    return this.http.get<Register[]>("http://localhost:3000/User/search/" + searched)
+  }
+
   constructor(public http: HttpClient) { }
 }

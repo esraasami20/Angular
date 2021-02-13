@@ -7,6 +7,8 @@ import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guard/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
+import { FriendProfileComponent } from './friend-profile/friend-profile.component';
+import { SearchComponentComponent } from './search-component/search-component.component';
 
 const routes: Routes = [
   {
@@ -28,10 +30,20 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'search/:searched',
+    component: SearchComponentComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'profile/setting',
     component: SettingsComponent,
-    
-  },  
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'profile/:username',
+    component: FriendProfileComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: '**',
     component: BlogComponent
