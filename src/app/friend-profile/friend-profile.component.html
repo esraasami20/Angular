@@ -8,10 +8,10 @@
                 <span>{{user.Fname}} {{user.Lname}}</span><br />
             </div>
             <div class="col-6">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                <button *ngIf="follow" class="btn btn-outline-success my-2 my-sm-0" type="submit"
                     (click)="followMe()">{{btn}}</button><br />
                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-                    data-target="#follower">Follower</button>
+                    data-target="#follower">{{user.followers.length}} Follower</button>
                 <!-- ***************************************** -->
                 <div id="follower" class="modal fade" role="dialog">
                     <div class="modal-dialog">
@@ -34,7 +34,7 @@
                 </div>
                 <!-- ******************************************** -->
                 <button type="button" class="btn btn-info btn-lg mx-3" data-toggle="modal"
-                    data-target="#following">Following</button>
+                    data-target="#following">{{user.following.length}}Following</button>
                 <!-- ***************************************** -->
                 <div id="following" class="modal fade" role="dialog">
                     <div class="modal-dialog">
@@ -59,20 +59,70 @@
         </div>
     </div>
     <hr />
-    <div *ngFor="let item of blogs" class="container text-center col-6">
+    
+        <div class="container col- mt-3">
+            <div *ngFor="let item of blogs" class="row">
+                <!-- <a routerLink="/blog">{{item.auther}}</a><br/> -->
+                <div class="card mb-3 col-8 offset-2 ">
+                    <div class="card-body p-2 text-left">
+                        <div class="row">
+                            <div class="col-8">
+                               <div class="row">
+                                <!-- <div class="col-8 col-md-3"><img [src]="'http://localhost:3000/'+user.photo" class="m-3 mt-3 rounded-circle col-12 mw-10"></div> -->
+                                <div class="col-9 align-self-center">
+                                    <a [href]="['/profile/'+item.username]" class="card-link">{{item.name}}</a>
+                                    <p class="card-subtitle mb-2 mt-1 text-muted">Shared publicly - {{item.createdAt | date:'MMMM dd yyyy'}}</p><br />
+                                </div>
+                               </div>
+                            </div>
+                        </div>
+                        <h5 class="card-title text-center">{{item.title}}</h5>
+                        <p class="card-text text-center"><span *ngFor="let t of item.tags">{{t}}</span><br /></p>
+                        <p class="card-text text-center">{{item.body}}</p>
+                    </div>
+                    <img class="card-img-bottom" [src]="'http://localhost:3000/'+item.photo" alt="Card image cap">
+                    <div>
+                        <ngb-accordion *ngIf="btn=='unfollow'" #acc="ngbAccordion" class="col-md-4 text-right" style="margin-right: 15px;">
+                            <ngb-panel [title]="[item.comments.length +' Comments']">
+                                <span>{{item.comments.length}}</span> Comments
+                                <ng-template ngbPanelContent>
+                                    <div class="card text-center mb-3 p-0" width="100%" *ngFor="let c of item.comments"
+                                        style="background-color:  rgb(226, 226, 226); border-radius: 30px 30px;">
+                                            <div class="card-body col-12 m-2 p-1 text-left">
+                                                <a [href]="['/profile/'+c.commenter]" class="card-title profile text-left">{{c.commenterName}}</a>
+                                                <p class="card-subtitle mb-2 mt-1 text-muted text-left">Commented At - {{c.dop | date:'MMMM dd yyyy'}}</p><br />
+                                                <p class="card-text text-justify">{{c.body}}</p>
+                                            </div>
+                                    </div>
+                                    <div class="col-md-12"><input type="text" width="100%" name="Comment" class="commentinput"
+                                            placeholder="Write a comment....." #addcomment>
+                                        <input type="button" value="send" (click)="addComment(item._id,addcomment.value)">
+                                    </div>
+                                </ng-template>
+            
+                            </ngb-panel>
+            
+                        </ngb-accordion>
+                    </div>
+                </div>
+                <hr />
+            </div>
+
+
+    <!-- <div *ngFor="let item of blogs" class="container text-center col-6">
         <div>
             <img [src]="'http://localhost:3000/'+user.photo" class="m-3 mt-3 rounded-circle col-2 mw-10">
-            <a routerLink="/profile">{{user.Fname}} {{user.Lname}}</a>
+            <a routerLink="/profile">{{user.Fname}} {{user.Lname}}</a> -->
             <!-- ************************** -->
-        </div>
+        <!-- </div>
         <p routerLink="/blog">{{item.title}}</p><br />
         <p>{{item.tags}}</p><br />
         <img [src]="'http://localhost:3000/'+ item.photo" style="height: 400px; width: 400px; "><br />
         <p class="text-justify ">{{item.body}}</p><br />
         <p>{{item.updatedAt}}</p><br />
-        <p>{{item.createdAt}}</p><br />
+        <p>{{item.createdAt}}</p><br /> -->
         <!-- add comment -->
-        <ngb-accordion #acc="ngbAccordion" class="col-md-4 text-right" style="margin-right: 15px;">
+        <!-- <ngb-accordion #acc="ngbAccordion" class="col-md-4 text-right" style="margin-right: 15px;">
             <ngb-panel [title]="[item.comments.length +' Comments']">
                 <span>{{item.comments.length}}</span> Comments
                 <ng-template ngbPanelContent>
@@ -96,5 +146,5 @@
 
         </ngb-accordion>
         <hr />
-    </div>
+    </div> -->
 </div>

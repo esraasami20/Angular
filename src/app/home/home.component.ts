@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.serviceblog.getFollowingBlog().subscribe(
       a=>{
-        this.blogs=a.reverse();
+        this.blogs=a;
       }
     )
   }
