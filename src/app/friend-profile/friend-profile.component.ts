@@ -12,10 +12,11 @@ import { RegisterService } from '../service/register.service';
   styleUrls: ['./friend-profile.component.css']
 })
 export class FriendProfileComponent implements OnInit {
+  logedUser:Register=new Register("","","","","");
   user: Register = new Register("", "", "", "", "");
   blogs: Blog[];
   // owner:Register=new Register("","","","","");
-  follow: boolean;
+  follow: boolean=true;
   btn: string = "follow";
   constructor(public blogService: BlogService, public userservice: RegisterService, public authservice: AuthService, public router: Router, public ar: ActivatedRoute) { }
   followMe() {
@@ -62,6 +63,11 @@ export class FriendProfileComponent implements OnInit {
         username = a['username']
       }
     )
+    this.userservice.getUserData().subscribe(
+      a=>{
+        this.logedUser=a;
+
+    })
     this.blogService.getFBlog(username).subscribe(
       a => {
         this.blogs = a.reverse();
@@ -71,23 +77,29 @@ export class FriendProfileComponent implements OnInit {
     this.userservice.getUser(username).subscribe(
       a => {
         this.user = a;
+        if(this.logedUser.username == this.user.username){
+          this.follow=false;
+        }
       }
     )
-    this.userservice.getUserData().subscribe(
-      a => {
-        a.following.findIndex(value => {
-          if (value == username)
-           { 
-             this.btn = "unfollow";
-            //  console.log(this.follow);
-          }
-          
-        });
 
-        // this.owner=a;
-        // console.log(a);
-      }
-    );
+    if(this.follow){
+      this.userservice.getUserData().subscribe(
+        a => {
+          a.following.findIndex(value => {
+            if (value == username)
+             { 
+               this.btn = "unfollow";
+              //  console.log(this.follow);
+            }
+            
+          });
+  
+          // this.owner=a;
+          // console.log(a);
+        }
+      );
+    }
     //console.log(this.owner);
 
   }

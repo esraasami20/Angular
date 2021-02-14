@@ -15,7 +15,31 @@
         </div>
     </div>
     <hr class="col-8"/>
-    <div class="row">
+        <div class="container offset-3 col-5 mt-3">
+            <div *ngFor="let item of blogs" class="row ">
+                <!-- <a routerLink="/blog">{{item.auther}}</a><br/> -->
+                <div class="card mb-3 col-12 ">
+                    <div class="card-body p-2 text-left">
+                        <div class="row">
+                            <div class="col-8">
+                               <div class="row">
+                                <!-- <div class="col-8 col-md-3"><img [src]="'http://localhost:3000/'+user.photo" class="m-3 mt-3 rounded-circle col-12 mw-10"></div> -->
+                                <div class="col-12 align-self-center">
+                                    <a [href]="['/profile/'+item.username]" class="card-link">{{item.name}}</a>
+                                    <p class="card-subtitle mb-2 mt-1 text-muted">Shared publicly - {{item.createdAt | date:'MMMM dd yyyy'}}</p><br />
+                                </div>
+                               </div>
+                            </div>
+                        </div>
+                        <h5 class="card-title text-center">{{item.title}}</h5>
+                        <p class="card-text text-center"><span *ngFor="let t of item.tags">{{t}}</span><br /></p>
+                        <p class="card-text text-center">{{item.body}}</p>
+                    </div>
+                    <img class="card-img-bottom" [src]="'http://localhost:3000/'+item.photo" alt="Card image cap">
+                </div>
+                <hr />
+            </div>
+    <!-- <div class="row">
         <div *ngFor="let item of blogs" class="offset-3 col-5 mb-3 border border-black">
           <a [href]="['/profile/'+item.username]">{{item.username}}</a><br />
           <a routerLink="/blog">{{item.title}}</a><br />
@@ -28,6 +52,6 @@
       </div>
       
     <div>
-
+ -->
     </div>
 </div>
