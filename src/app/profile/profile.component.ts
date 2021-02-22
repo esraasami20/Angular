@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit {
   }
   upload() {
     this.euser.append('username',this.user.username);
-    this.euser.append('password',this.user.password);
+    // this.euser.append('password',this.user.password);
     this.euser.append('Fname',this.user.Fname);
     this.euser.append('Lname',this.user.Lname);
     this.euser.append('email',this.user.email);
