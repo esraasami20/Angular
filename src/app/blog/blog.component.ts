@@ -1,3 +1,4 @@
+import { SharedValueService } from './../service/shared-value.service';
 import { Component, OnInit } from '@angular/core';
 import { Blog } from '../module/blog';
 import { BlogService } from '../service/blog.service';
@@ -10,8 +11,8 @@ import { BlogService } from '../service/blog.service';
 export class BlogComponent implements OnInit {
   blogs:Blog[];
     
-  constructor(public serviceblog:BlogService) { }
-    
+  constructor(public serviceblog:BlogService,public sharedService: SharedValueService) { }
+    public serverAPI = this.sharedService.configuration.apiURI;
   ngOnInit(): void {
     this.serviceblog.getAll().subscribe(
       a=>{

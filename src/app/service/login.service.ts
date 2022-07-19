@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Login } from '../module/login';
+import { SharedValueService } from './shared-value.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+  constructor(private http: HttpClient, private sharedService: SharedValueService) { }
 
-  login(log: Login) {
-    return this.http.post<Login>("http://localhost:3000/User", log)
+  private apiUrl = this.sharedService.configuration.apiURI + "/User/";
 
+  login(loginModel: Login) {
+    return this.http.post<Login>(this.apiUrl, loginModel)
   }
-  constructor(public http: HttpClient) { }
 }

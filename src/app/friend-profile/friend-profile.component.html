@@ -3,7 +3,7 @@
     <div class="container text-center">
         <div class="container row">
             <div class="img col-3">
-                <img [src]="'http://localhost:3000/'+user.photo" class="m-3 mt-3 rounded-circle col-6 mw-10">
+                <img [src]="serverAPI + '/' + user.photo" class="m-3 mt-3 rounded-circle col-6 mw-10">
                 <br />
                 <span>{{user.Fname}} {{user.Lname}}</span><br />
             </div>
@@ -68,7 +68,6 @@
                         <div class="row">
                             <div class="col-8">
                                <div class="row">
-                                <!-- <div class="col-8 col-md-3"><img [src]="'http://localhost:3000/'+user.photo" class="m-3 mt-3 rounded-circle col-12 mw-10"></div> -->
                                 <div class="col-9 align-self-center">
                                     <a [href]="['/profile/'+item.username]" class="card-link">{{item.name}}</a>
                                     <p class="card-subtitle mb-2 mt-1 text-muted">Shared publicly - {{item.createdAt | date:'MMMM dd yyyy'}}</p><br />
@@ -80,7 +79,7 @@
                         <p class="card-text text-center"><span *ngFor="let t of item.tags">{{t}}</span><br /></p>
                         <p class="card-text text-center">{{item.body}}</p>
                     </div>
-                    <img class="card-img-bottom" [src]="'http://localhost:3000/'+item.photo" alt="Card image cap">
+                    <img class="card-img-bottom" [src]="serverAPI + '/' + item.photo" alt="Card image cap">
                     <div>
                         <ngb-accordion *ngIf="btn=='unfollow'" #acc="ngbAccordion" class="col-md-4 text-right" style="margin-right: 15px;">
                             <ngb-panel [title]="[item.comments.length +' Comments']">
@@ -107,44 +106,4 @@
                 </div>
                 <hr />
             </div>
-
-
-    <!-- <div *ngFor="let item of blogs" class="container text-center col-6">
-        <div>
-            <img [src]="'http://localhost:3000/'+user.photo" class="m-3 mt-3 rounded-circle col-2 mw-10">
-            <a routerLink="/profile">{{user.Fname}} {{user.Lname}}</a> -->
-            <!-- ************************** -->
-        <!-- </div>
-        <p routerLink="/blog">{{item.title}}</p><br />
-        <p>{{item.tags}}</p><br />
-        <img [src]="'http://localhost:3000/'+ item.photo" style="height: 400px; width: 400px; "><br />
-        <p class="text-justify ">{{item.body}}</p><br />
-        <p>{{item.updatedAt}}</p><br />
-        <p>{{item.createdAt}}</p><br /> -->
-        <!-- add comment -->
-        <!-- <ngb-accordion #acc="ngbAccordion" class="col-md-4 text-right" style="margin-right: 15px;">
-            <ngb-panel [title]="[item.comments.length +' Comments']">
-                <span>{{item.comments.length}}</span> Comments
-                <ng-template ngbPanelContent>
-                    <div class="card text-center col-12 " width="100%" *ngFor="let c of item.comments"
-                        style="background-color:  rgb(226, 226, 226); width: fit-content; border-radius: 30px 30px; padding: 10px;">
-                        <div class="m-1 form-inline">
-                            <div class="card-body  m-2">
-                                <h5 class="card-title profile">{{c.commenter}}</h5>
-                                <p class="card-text text-justify">{{c.body}}</p>
-                                <hr />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12"><input type="text" width="100%" name="Comment" class="commentinput"
-                            placeholder="Write a comment....." #addcomment>
-                        <input type="button" value="send" (click)="addComment(item._id,addcomment.value)">
-                    </div>
-                </ng-template>
-
-            </ngb-panel>
-
-        </ngb-accordion>
-        <hr />
-    </div> -->
 </div>

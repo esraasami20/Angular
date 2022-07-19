@@ -5,6 +5,7 @@ import { Register } from '../module/register';
 import { AuthService } from '../service/auth.service';
 import { BlogService } from '../service/blog.service';
 import { RegisterService } from '../service/register.service';
+import { SharedValueService } from '../service/shared-value.service';
 
 @Component({
   selector: 'app-friend-profile',
@@ -18,7 +19,15 @@ export class FriendProfileComponent implements OnInit {
   // owner:Register=new Register("","","","","");
   follow: boolean=true;
   btn: string = "follow";
-  constructor(public blogService: BlogService, public userservice: RegisterService, public authservice: AuthService, public router: Router, public ar: ActivatedRoute) { }
+  constructor(public blogService: BlogService,
+              public userservice: RegisterService,
+              public authservice: AuthService,
+              public router: Router,
+              public ar: ActivatedRoute,
+              public sharedService: SharedValueService) { }
+
+  public serverAPI = this.sharedService.configuration.apiURI;
+  
   followMe() {
     if(this.btn=="follow"){
     this.userservice.followUser(this.user.username).subscribe(
@@ -90,18 +99,11 @@ export class FriendProfileComponent implements OnInit {
             if (value == username)
              { 
                this.btn = "unfollow";
-              //  console.log(this.follow);
             }
-            
           });
-  
-          // this.owner=a;
-          // console.log(a);
         }
       );
     }
-    //console.log(this.owner);
-
   }
 
 }

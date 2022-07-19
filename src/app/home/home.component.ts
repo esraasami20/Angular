@@ -1,3 +1,4 @@
+import { SharedValueService } from './../service/shared-value.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -13,6 +14,14 @@ import { RegisterService } from '../service/register.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  constructor(public serviceblog:BlogService,
+              public auth:AuthService, 
+              public userService: RegisterService, 
+              public router: Router,
+              public sharedService: SharedValueService) { }
+
+
+  public serverAPI = this.sharedService.configuration.apiURI;
 
   user: Register = new Register("", "", "", "", "");
   blogs: Blog[];
@@ -63,7 +72,6 @@ export class HomeComponent implements OnInit {
     )
     location.reload();
   }
-  constructor(public serviceblog:BlogService,public auth:AuthService, public userService: RegisterService, public router: Router) { }
     
   ngOnInit(): void {
     this.serviceblog.getFollowingBlog().subscribe(
