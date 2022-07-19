@@ -2,16 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { SharedValueService } from './shared-value.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private sharedService: SharedValueService) { }
+
+  private apiUrl = this.sharedService.configuration.apiURI + "/User/";
 
   login(username: string, password: string): Observable<boolean> {
-    return this.http.post<{ token: string }>('http://localhost:3000/User/login', { username: username, password: password })
+    return this.http.post<{ token: string }>(this.apiUrl + 'login', { username: username, password: password })
       .pipe(
         map(result => {
           console.log(result.token)

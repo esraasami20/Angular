@@ -1,3 +1,4 @@
+import { SharedValueService } from './../service/shared-value.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Blog } from '../module/blog';
@@ -13,8 +14,13 @@ import { RegisterService } from '../service/register.service';
 export class SearchComponentComponent implements OnInit {
   users: Register[];
   blogs: Blog[];
-  constructor(public ar: ActivatedRoute, public blogservice: BlogService, public userService: RegisterService) { }
+  constructor(public ar: ActivatedRoute,
+              public blogservice: BlogService, 
+              public userService: RegisterService,
+              public sharedService: SharedValueService) { }
   
+  public serverAPI = this.sharedService.configuration.apiURI;
+
   ngOnInit(): void {
     let searched: string = "";
     

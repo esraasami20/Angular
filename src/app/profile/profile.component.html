@@ -4,7 +4,7 @@
         <div class="container text-center">
             <div class="row">
                 <div class="img col-4 col-md-3">
-                    <img [src]="'http://localhost:3000/'+user.photo" class="rounded-circle col-10">
+                    <img [src]="serverAPI + '/' + user.photo" class="rounded-circle col-10">
                     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Update
                         Photo
                     </button>
@@ -142,7 +142,7 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="row">
-                                <div class="col-8 col-md-3"><img [src]="'http://localhost:3000/'+user.photo"
+                                <div class="col-8 col-md-3"><img [src]="serverAPI + '/' + user.photo"
                                         class="m-3 mt-3 rounded-circle col-12 mw-10"></div>
                                 <div class="col-9 align-self-center">
                                     <a routerLink="/profile" class="card-link">{{user.Fname}} {{user.Lname}}</a>
@@ -202,13 +202,7 @@
                     <p class="card-text text-center"><span *ngFor="let t of item.tags">{{t}}</span><br /></p>
                     <p class="card-text text-center">{{item.body}}</p>
                 </div>
-                <!-- <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
-                </ul> -->
-                <!-- <a href="#" class="card-link">Another link</a> -->
-                <img class="card-img-bottom" [src]="'http://localhost:3000/'+item.photo" alt="Card image cap">
+                <img class="card-img-bottom" [src]="serverAPI + '/' + item.photo" alt="Card image cap">
                 <div>
                     <ngb-accordion #acc="ngbAccordion" class="col-md-4 text-right" style="margin-right: 15px;">
                         <ngb-panel [title]="[item.comments.length +' Comments']">
@@ -235,84 +229,6 @@
                     </ngb-accordion>
                 </div>
             </div>
-            <!-- <div>
-                <img [src]="'http://localhost:3000/'+user.photo" class="m-3 mt-3 rounded-circle col-2 mw-10">
-                <a routerLink="/profile">{{user.Fname}} {{user.Lname}}</a> -->
-            <!-- ************************** -->
-
-            <!-- <button type="button" class="btn btn-info mx-2"
-                    (click)="getdata(item.title,item.tags[0],item.body,item._id)" data-toggle="modal"
-                    data-target="#editBlog"> <b> ...
-                    </b></button>
-                <a href="/profile" class="btn btn-danger mx-2" (click)="deleteBlog(item._id)"> X </a>
-                <div id="editBlog" class="modal fade" role="dialog">
-                    <div class="modal-dialog"> -->
-            <!-- Modal content-->
-            <!-- <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Edit Blog</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="title">Title</label>
-                                    <input type="text" [value]="item.title" #title class="form-control" required
-                                        [(ngModel)]="eBlog.title">
-                                    <label for="tags">Tags</label>
-                                    <input type="text" #tags class="form-control" [(ngModel)]="eBlog.tags">
-                                    <label for="body">Body</label>
-                                    <textarea type="text" [value]="item.body" #body class="form-control" required
-                                        [(ngModel)]="eBlog.body"></textarea>
-                                </div>
-                            </div> -->
-            <!-- ,title,tags,body -->
-            <!-- <div class="modal-footer">
-    
-                                <a href="/profile" action="/profile" class="btn close col-6" (click)="editBlog()">Done</a>
-    
-    
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-    
-                        </div>
-    
-                    </div>
-    
-    
-                </div> -->
-            <!-- <p routerLink="/blog">{{item.title}}</p><br />
-                <span *ngFor="let t of item.tags">{{t}}</span><br />
-                <img *ngIf="item.photo" [src]="'http://localhost:3000/'+ item.photo"
-                    style="height: 200px; width: 200px; "><br />
-                <p class="text-justify ">{{item.body}}</p><br />
-                <p>{{item.updatedAt}}</p><br />
-                <p>{{item.createdAt}}</p><br /> -->
-            <!-- add comment -->
-            <!-- <ngb-accordion #acc="ngbAccordion" class="col-md-4 text-right" style="margin-right: 15px;">
-                    <ngb-panel [title]="[item.comments.length +' Comments']">
-                        <span>{{item.comments.length}}</span> Comments
-                        <ng-template ngbPanelContent>
-                            <div class="card text-center col-12 " width="100%" *ngFor="let c of item.comments"
-                                style="background-color:  rgb(226, 226, 226); width: fit-content; border-radius: 30px 30px; padding: 10px;">
-                                <div class="m-1 form-inline">
-                                    <div class="card-body  m-2">
-                                        <h5 class="card-title profile">{{c.commenter}}</h5>
-                                        <p class="card-text text-justify">{{c.body}}</p>
-                                        <hr />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12"><input type="text" width="100%" name="Comment" class="commentinput"
-                                    placeholder="Write a comment....." #addcomment>
-                                <input type="button" value="send" (click)="addComment(item._id,addcomment.value)">
-                            </div>
-                        </ng-template>
-    
-                    </ngb-panel>
-    
-                </ngb-accordion>
-            </div> -->
             <hr />
-
         </div>
     </div>

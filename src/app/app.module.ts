@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +21,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { FriendProfileComponent } from './friend-profile/friend-profile.component';
 import { SearchComponentComponent } from './search-component/search-component.component';
+import { SharedValueService } from './service/shared-value.service';
+import { setConfig } from './Helpers/helper';
 
 
 export function tokenGetter() {
@@ -57,6 +59,7 @@ export function tokenGetter() {
 
   ],
   providers: [
+    SharedValueService,
     AuthService,
     AuthGuard,
     LoginService,
@@ -65,6 +68,12 @@ export function tokenGetter() {
       provide: HTTP_INTERCEPTORS,
       useClass:TokenInterceptorService,
       multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: setConfig,
+      multi: true,
+      deps: [SharedValueService,HttpClient],
     }],
   bootstrap: [AppComponent]
 })
